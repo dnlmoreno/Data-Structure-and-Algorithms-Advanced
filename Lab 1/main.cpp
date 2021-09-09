@@ -23,12 +23,12 @@ auto finish = chrono::high_resolution_clock::now();
 
 int main(int argc, char* argv[]){
     // Variables de la etapa tamanio
-    int replicas = 1000, elem, n;
-    int puntos[] = {10, 50, 500, 2000, 10000, 30000, 100000, 500000, 2000000, 10000000, 30000000, 100000000, 300000000};
+    int replicas = 10000, elem, n;
+    int puntos[] = {10, 50, 500, 2000, 10000, 50000, 100000, 300000, 500000, 800000, 1000000, 1500000, 2000000};
     int cant_puntos = sizeof puntos/sizeof puntos[0];
 
     // Tamanio y vector utilizado en la etapa de posicion
-    int tam_two_stage = puntos[8];
+    int tam_two_stage = puntos[12];
     vector<int> elem_vector(tam_two_stage); 
 
     /*******************************************/
@@ -37,7 +37,7 @@ int main(int argc, char* argv[]){
 
     // Se guarda en archivo csv
 	ofstream file;
-	file.open("Resultados/Experimentacion_busquedas_tamanios.csv", ios::out);
+	file.open("Resultados/Tamaños_normales_datos/Experimentacion_busquedas_tamanios.csv", ios::out);
     file << "Tamaños" << ";" << "Tiempo_búsqueda_lineal" << ";" << "Tiempo_búsqueda_binaria" << ";" << "Tiempo_búsqueda_doblada" << endl;
 
     cout << "EVALUACION EXPERIMENTAL CON DIFERENTES TAMANIOS" << endl; 
@@ -85,7 +85,7 @@ int main(int argc, char* argv[]){
     }
 
     // Se guarda en archivo csv
-	file.open("Resultados/Experimentacion_busquedas_posicion.csv", ios::out);
+	file.open("Resultados/Tamaños_normales_datos/Experimentacion_busquedas_posicion.csv", ios::out);
     file << "Posición" << ";" << "Tiempo_búsqueda_lineal" << ";" << "Tiempo_búsqueda_binaria" << ";" << "Tiempo_búsqueda_doblada" << endl;
 
     cout << "\nEVALUACION EXPERIMENTAL CON DIFERENTES POSICIONES (TAMANIO = " << tam_two_stage << ")" << endl; 
