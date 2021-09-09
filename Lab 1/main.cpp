@@ -109,7 +109,7 @@ bool busquedaLineal(const vector<int> &vector, int elem){
     int cont = 0;
     bool flag = false;
 
-    while(flag == false and cont < vector.size()){
+    while(flag == false & cont < vector.size()){
         if(vector[cont] == elem){ // Elemento fue encontrado
             flag = true;
         }
