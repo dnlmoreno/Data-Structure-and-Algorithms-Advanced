@@ -37,7 +37,7 @@ int main(int argc, char* argv[]){
 
     // Se guarda en archivo csv
 	ofstream file;
-	file.open("Resultados/Tamaños_normales_datos/Experimentacion_busquedas_tamanios.csv", ios::out);
+	file.open("Resultados/Tamaños_medianos_datos/Experimentacion_busquedas_tamanios.csv", ios::out);
     file << "Tamaños" << ";" << "Tiempo_búsqueda_lineal" << ";" << "Tiempo_búsqueda_binaria" << ";" << "Tiempo_búsqueda_doblada" << endl;
 
     cout << "EVALUACION EXPERIMENTAL CON DIFERENTES TAMANIOS" << endl; 
@@ -71,7 +71,7 @@ int main(int argc, char* argv[]){
     /***************************************************************/
 
     // Valor que variara la posicion del elemento buscado
-    int valor = tam_two_stage/cant_puntos;
+    int valor = tam_two_stage/cant_puntos - 1;
 
     // Se guarda la posicion y el elemento
     vector<int> pos(cant_puntos);
@@ -85,7 +85,7 @@ int main(int argc, char* argv[]){
     }
 
     // Se guarda en archivo csv
-	file.open("Resultados/Tamaños_normales_datos/Experimentacion_busquedas_posicion.csv", ios::out);
+	file.open("Resultados/Tamaños_medianos_datos/Experimentacion_busquedas_posicion.csv", ios::out);
     file << "Posición" << ";" << "Tiempo_búsqueda_lineal" << ";" << "Tiempo_búsqueda_binaria" << ";" << "Tiempo_búsqueda_doblada" << endl;
 
     cout << "\nEVALUACION EXPERIMENTAL CON DIFERENTES POSICIONES (TAMANIO = " << tam_two_stage << ")" << endl; 
