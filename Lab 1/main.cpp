@@ -98,13 +98,27 @@ int main(int argc, char* argv[]){
 
     int aux = 0, aux_v1 = 0;
     for(int i=0; i<cant_puntos; i++){
-        pos[i] = valor + aux;
-        elem_pos[i] = elem_vector[valor + aux];
+        if(i=0){
+            pos[i] = valor + aux - 8;
+            elem_pos[i] = elem_vector[valor + aux - 8];
+        } 
+        else{
+            pos[i] = valor + aux;
+            elem_pos[i] = elem_vector[valor + aux];
+        }
         aux = elem_pos[i];
 
-        pos_v1[i] = valor_v1 + aux_v1;
-        elem_pos_v1[i] = elem_vector_v1[valor_v1 + aux_v1];
+
+        if(i=0){
+            pos_v1[i] = valor_v1 + aux_v1 - 800000;
+            elem_pos_v1[i] = elem_vector_v1[valor_v1 + aux_v1 - 800000];
+        } 
+        else{
+            pos_v1[i] = valor_v1 + aux_v1;
+            elem_pos_v1[i] = elem_vector_v1[valor_v1 + aux_v1];
+        }
         aux_v1 = elem_pos_v1[i];
+        
     }
 
     // Se guarda en archivo csv
