@@ -24,8 +24,8 @@ auto finish = chrono::high_resolution_clock::now();
 
 int main(int argc, char* argv[]){
     // Variables de la etapa tamanio
-    int replicas = 30000, elem, elem_v1, n, n_v1;
-    int puntos[] = {50, 200, 800, 2000, 5000, 10000, 20000, 40000, 80000, 100000};
+    int replicas = 100000, elem, elem_v1, n, n_v1;
+    int puntos[] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
     int puntos_v1[] = {1000000, 10000000, 20000000, 30000000, 40000000, 50000000, 60000000, 70000000, 80000000, 90000000};
     int cant_puntos = sizeof puntos/sizeof puntos[0];
 
@@ -87,8 +87,8 @@ int main(int argc, char* argv[]){
     /***************************************************************/
 
     // Valor que variara la posicion del elemento buscado
-    int valor = tam_two_stage/cant_puntos - 51;
-    int valor_v1 = tam_two_stage_v1/cant_puntos - 51;
+    int valor = tam_two_stage/cant_puntos - 1;
+    int valor_v1 = tam_two_stage_v1/cant_puntos - 1;
 
     // Se guarda la posicion y el elemento
     vector<int> pos(cant_puntos);
@@ -96,16 +96,15 @@ int main(int argc, char* argv[]){
     vector<int> pos_v1(cant_puntos);
     vector<int> elem_pos_v1(cant_puntos);
 
-    int aux = 0, aux_v1 = 0, temp = 50;
+    int aux = 0, aux_v1 = 0;
     for(int i=0; i<cant_puntos; i++){
-        pos[i] = valor + aux + temp;
-        elem_pos[i] = elem_vector[valor + aux + temp];
+        pos[i] = valor + aux;
+        elem_pos[i] = elem_vector[valor + aux];
         aux = elem_pos[i];
 
-        pos_v1[i] = valor_v1 + aux_v1 + temp;
-        elem_pos_v1[i] = elem_vector_v1[valor_v1 + aux_v1 + temp];
+        pos_v1[i] = valor_v1 + aux_v1;
+        elem_pos_v1[i] = elem_vector_v1[valor_v1 + aux_v1];
         aux_v1 = elem_pos_v1[i];
-        temp = 0;
     }
 
     // Se guarda en archivo csv
