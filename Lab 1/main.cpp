@@ -87,8 +87,8 @@ int main(int argc, char* argv[]){
     /***************************************************************/
 
     // Valor que variara la posicion del elemento buscado
-    int valor = tam_two_stage/cant_puntos - 1;
-    int valor_v1 = tam_two_stage_v1/cant_puntos - 1;
+    int valor = tam_two_stage/cant_puntos - 3;
+    int valor_v1 = tam_two_stage_v1/cant_puntos - 300000;
 
     // Se guarda la posicion y el elemento
     vector<int> pos(cant_puntos);
@@ -98,26 +98,13 @@ int main(int argc, char* argv[]){
 
     int aux = 0, aux_v1 = 0;
     for(int i=0; i<cant_puntos; i++){
-        if(i=0){
-            pos[i] = valor + aux - 4;
-            elem_pos[i] = elem_vector[valor + aux - 4];
-        } 
-        else{
-            pos[i] = valor + aux;
-            elem_pos[i] = elem_vector[valor + aux];
-        }
+        pos[i] = valor + aux - 4;
+        elem_pos[i] = elem_vector[valor + aux];
         aux = elem_pos[i];
 
-        if(i=0){
-            pos_v1[i] = valor_v1 + aux_v1 - 400000;
-            elem_pos_v1[i] = elem_vector_v1[valor_v1 + aux_v1 - 400000];
-        } 
-        else{
-            pos_v1[i] = valor_v1 + aux_v1;
-            elem_pos_v1[i] = elem_vector_v1[valor_v1 + aux_v1];
-        }
+        pos_v1[i] = valor_v1 + aux_v1;
+        elem_pos_v1[i] = elem_vector_v1[valor_v1 + aux_v1];
         aux_v1 = elem_pos_v1[i];
-
     }
 
     // Se guarda en archivo csv
