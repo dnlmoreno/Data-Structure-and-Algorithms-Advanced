@@ -24,7 +24,7 @@ auto finish = chrono::high_resolution_clock::now();
 int main(int argc, char* argv[]){
     // Variables de la etapa tamanio
     int replicas = 10000, elem, n;
-    int puntos[] = {100, 10000, 50000, 100000, 300000, 500000, 800000, 1000000, 1500000, 2000000};
+    int puntos[] = {10000, 125000, 250000, 375000, 500000, 625000, 750000, 850000, 1000000, 1125000, 1250000, 1375000, 1500000};
     int cant_puntos = sizeof puntos/sizeof puntos[0];
 
     // Tamanio y vector utilizado en la etapa de posicion
