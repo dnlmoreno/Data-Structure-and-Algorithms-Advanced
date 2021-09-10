@@ -24,7 +24,7 @@ auto finish = chrono::high_resolution_clock::now();
 
 int main(int argc, char* argv[]){
     // Variables de la etapa tamanio
-    int replicas = 20000, elem, elem_v1, n, n_v1;
+    int replicas = 30000, elem, elem_v1, n, n_v1;
     int puntos[] = {50, 200, 800, 2000, 5000, 10000, 20000, 40000, 80000, 100000};
     int puntos_v1[] = {1000000, 10000000, 20000000, 30000000, 40000000, 50000000, 60000000, 70000000, 80000000, 90000000};
     int cant_puntos = sizeof puntos/sizeof puntos[0];
@@ -88,7 +88,7 @@ int main(int argc, char* argv[]){
 
     // Valor que variara la posicion del elemento buscado
     int valor = tam_two_stage/cant_puntos - 51;
-    int valor_v1 = tam_two_stage/cant_puntos - 51;
+    int valor_v1 = tam_two_stage_v1/cant_puntos - 51;
 
     // Se guarda la posicion y el elemento
     vector<int> pos(cant_puntos);
@@ -113,7 +113,7 @@ int main(int argc, char* argv[]){
     file << "Posición" << ";" << "Tiempo_búsqueda_lineal" << ";" << "Tiempo_búsqueda_binaria" << ";" << "Tiempo_búsqueda_doblada" << endl;
 
 	file_v1.open("Resultados/Tamaños_grandes_datos/Experimentacion_busquedas_posicion.csv", ios::out);
-    file_v1 << "Tamaños" << ";" << "Tiempo_búsqueda_binaria" << ";" << "Tiempo_búsqueda_doblada" << endl;
+    file_v1 << "Posición" << ";" << "Tiempo_búsqueda_binaria" << ";" << "Tiempo_búsqueda_doblada" << endl;
 
     cout << "\nEVALUACION EXPERIMENTAL CON DIFERENTES POSICIONES (TAMANIO = " << tam_two_stage << ") y (TAMANIO = " << tam_two_stage_v1 << ")" << endl; 
     
