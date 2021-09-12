@@ -1,0 +1,11 @@
+Carpetas:
+
+- Resultados (resultados obtenidos de los experimentos en csv)
+- Gráficos (graficos de los experimentos)
+
+- Heaps libs (archivos .cpp y .hpp de los codigos)
+    *Binary heap
+    *Binomial heap
+
+- main.cpp (donde estaran los experimentos)
+- Makefile
