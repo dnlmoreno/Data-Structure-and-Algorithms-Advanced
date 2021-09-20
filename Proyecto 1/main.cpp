@@ -6,7 +6,10 @@ using namespace std;
 int main(int argc, char* argv[]){
 	cout << "Hola Mundo!" << endl;
 	BinomialHeap binomial_h;
+	BinomialHeap binomial_h2;
 	Nodo* H = NULL;
+	Nodo* H1 = NULL;
+	Nodo* H2 = NULL;
 	Nodo* W = NULL;
 
 	//cout << "El binomial esta en la posicion: " << binomial_h.getHeap() << endl;
@@ -19,17 +22,33 @@ int main(int argc, char* argv[]){
 	binomial_h.insert(16);
 	binomial_h.insert(17);
 	binomial_h.insert(19);
-	binomial_h.insert(1);
-	binomial_h.insert(7);
 
-	H = binomial_h.getHeap();
+
+	binomial_h2.insert(0);
+	binomial_h2.insert(1);
+	binomial_h2.insert(7);
+	binomial_h2.insert(26);
+	binomial_h2.insert(30);
+
+	H1 = binomial_h.getHeap();
+	H2 = binomial_h2.getHeap();
+
+	H = binomial_h.union_BH(H1, H2);
+
+	//H = binomial_h.getHeap();
+
 	binomial_h.Display(H);
 
-	W = binomial_h.search_Min();
+	H = binomial_h.search_Min();
 
-	cout << W->info << endl;
-
-	cout << "El binomial esta en la posicion: " << binomial_h.getHeap()->info << endl;
+	cout << "Raiz minima: " << H->info << endl;
+	cout << endl;
 	
+	binomial_h.PrintBinomialHeap();
+
+	// cout << "\n#############################" << endl;
+
+	// binomial_h.displayABIT(binomial_h.getHeap());
+
 	return 0;
 }

@@ -154,18 +154,17 @@ void BinomialHeap::__link_BT(Nodo* head_BT1, Nodo* head_BT2){
     head_BT2->degree = head_BT2->degree + 1;
 }
 
-int BinomialHeap::Display(Nodo* H)
-{
-    if (H == NULL)
-    {
+void BinomialHeap::Display(Nodo* H){
+    if (H == NULL){
         cout<<"The Heap is empty"<<endl;
-        return 0;
+        //return 0;
     }
+
     cout<<"The root nodes are: "<<endl;
     Nodo* p;
+
     p = H;
-    while (p != NULL)
-    {
+    while (p != NULL){
         cout<<p->info;
         if (p->sibling != NULL)
             cout<<"-->";
@@ -173,3 +172,44 @@ int BinomialHeap::Display(Nodo* H)
     }
     cout<<endl;
 }
+void BinomialHeap::Display2(Nodo* H){
+	if(H == NULL){
+		cout<<"The heap is empty"<<endl;
+	}
+	Nodo* p;
+	p = H;
+	int IDTree = 1;
+	std::string tab = "\t";
+	while(p  != NULL){
+		cout<<"ID Tree: "<<IDTree<<endl;
+		std::cout<<p->info<<endl;
+		DisplayBhTree(p->child,tab);
+		p = p->sibling;
+		IDTree++;
+		std::cout <<'\n' << "*************************************" <<'\n';
+	}
+
+}
+
+void BinomialHeap::DisplayBhTree(Nodo* H,std::string tab){
+	if(H == NULL){
+		std::cout << tab << " - " << '\n';
+	} else {
+		std::cout << tab;
+		std::cout << H->info <<'\n';
+		DisplayBhTree(H->child, tab + '\t');
+		DisplayBhTree(H->sibling, tab);
+	} 
+
+}
+void BinomialHeap::PrintBinomialHeap(){
+	Display2(this->head);
+}
+
+void BinomialHeap::displayABIT(Nodo *h){
+	while(h){
+		cout << h->info << " ";
+		displayABIT(h->child);
+		h = h->sibling;
+	}
+} 
