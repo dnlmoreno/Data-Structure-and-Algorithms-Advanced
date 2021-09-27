@@ -35,19 +35,25 @@ Nodo* BinomialHeap::getHeap(){
 }
 
 bool BinomialHeap::insert(int info){
+	cout<<"insert function"<<endl;
 	// Heap esta vacio
 	if(head == NULL){
+		cout << "entre head null";
 		head = new Nodo(info);
 		return true;
 	}
 
 	// Heap no esta vacio
+	cout << "hola"<<endl;
+	
 	Nodo* new_heap = NULL;
 	new_heap = new Nodo(info);
+	std::cout<<"me caigo en insert 2"<<'\t'<<endl;;
 	head = union_BH(head, new_heap);
 	//delete new_heap;
 	return true;
 }
+
 
 Nodo* BinomialHeap::search_Min(){
 	Nodo* x = head;
@@ -70,9 +76,12 @@ Nodo* BinomialHeap::search_Min(){
 	return min_node;
 }
 
+
 Nodo* BinomialHeap::union_BH(Nodo* head_BT1, Nodo* head_BT2){
 	// Comprueba si los heaps ingresados tienen elementos
 	if(head_BT1 == NULL && head_BT2 == NULL) return NULL;
+
+	std::cout<<"me caigo en union"<<endl;;
 
 	// Se conectan ambos heap en uno solo 
 	head = __merge(head_BT1, head_BT2);
@@ -113,7 +122,9 @@ Nodo* BinomialHeap::union_BH(Nodo* head_BT1, Nodo* head_BT2){
 	return head;
 }
 
+
 Nodo* BinomialHeap::__merge(Nodo* head_BT1, Nodo* head_BT2){
+	std::cout<<"me caigo en merge"<<endl;
 	// Si un heap ingresado esta vacio devuelve el heap no vacio
 	if(head_BT1 == NULL) return head_BT2;
 	if(head_BT2 == NULL) return head_BT1;
@@ -125,6 +136,7 @@ Nodo* BinomialHeap::__merge(Nodo* head_BT1, Nodo* head_BT2){
 	else head = head_BT2;
 	
 	while(head_BT1 != NULL && head_BT2 != NULL){
+		
 		// Avanza el puntero al BT siguiente del heap1
 		if(head_BT1->degree < head_BT2->degree){
 			head_BT1 = head_BT1->sibling;
@@ -153,6 +165,8 @@ void BinomialHeap::__link_BT(Nodo* head_BT1, Nodo* head_BT2){
     head_BT2->child = head_BT1;
     head_BT2->degree = head_BT2->degree + 1;
 }
+
+
 
 void BinomialHeap::Display(Nodo* H){
     if (H == NULL){
@@ -205,11 +219,3 @@ void BinomialHeap::DisplayBhTree(Nodo* H,std::string tab){
 void BinomialHeap::PrintBinomialHeap(){
 	Display2(this->head);
 }
-
-void BinomialHeap::displayABIT(Nodo *h){
-	while(h){
-		cout << h->info << " ";
-		displayABIT(h->child);
-		h = h->sibling;
-	}
-} 

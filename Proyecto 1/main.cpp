@@ -15,9 +15,10 @@ int main(int argc, char* argv[]){
 	//cout << "El binomial esta en la posicion: " << binomial_h.getHeap() << endl;
 	//cout << "El binomial esta en la posicion: " << &binomial_h << endl;
 
+
 	binomial_h.insert(5);
 	binomial_h.insert(8);
-	binomial_h.insert(10);
+/*	binomial_h.insert(10);
 	binomial_h.insert(15);
 	binomial_h.insert(16);
 	binomial_h.insert(17);
@@ -28,27 +29,25 @@ int main(int argc, char* argv[]){
 	binomial_h2.insert(1);
 	binomial_h2.insert(7);
 	binomial_h2.insert(26);
-	binomial_h2.insert(30);
+	binomial_h2.insert(30); */
 
 	H1 = binomial_h.getHeap();
 	H2 = binomial_h2.getHeap();
 
-	H = binomial_h.union_BH(H1, H2);
+	//H = binomial_h.union_BH(H1, H2);
 
 	//H = binomial_h.getHeap();
 
-	binomial_h.Display(H);
+	// binomial_h.Display(H);
 
-	H = binomial_h.search_Min();
+	// H = binomial_h.search_Min();
 
-	cout << "Raiz minima: " << H->info << endl;
-	cout << endl;
+	// cout << "Raiz minima: " << H->info << endl;
+	//cout << endl;
 	
-	binomial_h.PrintBinomialHeap();
+	// binomial_h.PrintBinomialHeap();
 
 	// cout << "\n#############################" << endl;
-
-	// binomial_h.displayABIT(binomial_h.getHeap());
 
 	return 0;
 }
