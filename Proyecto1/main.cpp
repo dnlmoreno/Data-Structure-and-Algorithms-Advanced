@@ -21,7 +21,7 @@ int main(int argc, char* argv[]){
 	binomial_h.insert(19);
 	binomial_h.insert(1);
 	binomial_h.insert(7);
-
+	
 	H = binomial_h.getHeap();
 	binomial_h.Display(H);
 
