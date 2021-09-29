@@ -1,6 +1,7 @@
 #include <iostream>
 #include "libs/BinomialHeap.hpp"
-
+#include "libs/BinaryHeap.hpp"
+#include "libs/Experimentation.hpp"
 using namespace std;
 
 int main(int argc, char* argv[]){
@@ -15,9 +16,16 @@ int main(int argc, char* argv[]){
 	//cout << "El binomial esta en la posicion: " << binomial_h.getHeap() << endl;
 	//cout << "El binomial esta en la posicion: " << &binomial_h << endl;
 
+	BinaryHeap* bh = new BinaryHeap();
 
 	binomial_h.insert(5);
 	binomial_h.insert(8);
+	bh->push(1);
+	bh->push(3);
+	bh->push(5);
+	bh->push(6);
+	bh->push(1);
+	bh->printBinaryHeap();
 /*	binomial_h.insert(10);
 	binomial_h.insert(15);
 	binomial_h.insert(16);
