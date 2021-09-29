@@ -1,15 +1,14 @@
 #include "Experimentation.hpp"
 
-Experimentation::Experimentation(/* args */)
-{
+Experimentation::Experimentation(/* args */){
 }
 
-Experimentation::~Experimentation()
-{
+Experimentation::~Experimentation(){
 }
 void Experimentation::fill(int n){
     
 }
+
 void Experimentation::debugBinaryHeap(){
 	BinaryHeap* bh = new BinaryHeap();
 
@@ -22,7 +21,9 @@ void Experimentation::debugBinaryHeap(){
 
 
 }
+
 void Experimentation::debugBinomialHeap(){
+
   	cout << "Hola Mundo!" << endl;
 	BinomialHeap binomial_h;
 	BinomialHeap binomial_h2;
@@ -69,6 +70,7 @@ void Experimentation::debugBinomialHeap(){
 	// cout << "\n#############################" << endl;
 
 }
+
 void Experimentation::getInsertionTime(){
       int rep = 10000;
   for(int n = 100000; n <= 1000000; n+=100000){
@@ -83,6 +85,7 @@ void Experimentation::getInsertionTime(){
     std::cout <<duracion<< '\n';
   }
 }
+
 void Experimentation::getMergeTime(){
 int rep = 10000;
   int n = 1000001;
