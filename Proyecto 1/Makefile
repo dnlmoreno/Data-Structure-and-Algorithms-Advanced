@@ -1,7 +1,7 @@
 CPP=g++
 
-OBJECTS=libs/BinomialHeap.o\
-		
+OBJECTS=libs/BinomialHeap.o libs/BinaryHeap.o libs/Experimentation.o\
+
 BINS=main\
 		
 CPPFLAGS=-std=c++11 -O3 -DNDEBUG
