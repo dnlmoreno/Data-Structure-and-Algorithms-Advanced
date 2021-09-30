@@ -7,6 +7,8 @@
 #include <vector>
 #include <string>
 
+#define tab "\t"
+
 typedef std::vector<int> vi;
 typedef std::string str;
 class BinaryHeap{
@@ -16,6 +18,9 @@ private:
 	void downheap(int);
 	std::vector<int> *arr;
 	void printBinaryHeap(str,int);
+	void printArr();
+	void upheap(int*,int*,int*);
+		int parent(int i) { return (i) / 2; }
 	/*
 	void printIntevalTree(Node*,std::string);
 
@@ -33,7 +38,7 @@ public:
 	std::vector<int> getVector();
 	// cambie el parámetro de comparación para hacerlo MIN O MAX
 	bool isValid();
-	BinaryHeap unionBH(const std::vector<int>& arr);
+	void unionBH(const std::vector<int>& arr);
 
 };
 #endif
