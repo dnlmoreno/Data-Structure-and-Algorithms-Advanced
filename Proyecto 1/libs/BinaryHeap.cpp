@@ -41,34 +41,13 @@ void BinaryHeap::upheap(int* hijo, int* padre, int* i){
 }
 
 void BinaryHeap::push(int n){
-  // int pos = arr->size();
-  // int fatherPos = pos/2;
-  // int millon = 1000000;
-  // if(n%millon == 0){
-  //   printf("[n] %d \n",n);
-  //   printf("\t[pos]: %d \t[father pos]: %d \n",pos,arr->at(fatherPos));
-  // }
-  // arr->push_back(n);
-  //   printf("arr->at(pos): %d \n",arr->at(pos));   
-  //   printf("arr->at(father): %d \n",arr->at(fatherPos));   
-    
-  
   int counter = 0;
   int i = this->size();
 	arr->push_back(n);
 	i++;
 	while (i != 1 && arr->at(parent(i)) > arr->at(i)){
-    printf("uping \n");
-		upheap(&arr->at(i), &arr->at(parent(i)), &i);
+    upheap(&arr->at(i), &arr->at(parent(i)), &i);
 	}
-
-  // while(pos!=1 && arr->at(fatherPos) > arr->at(pos)){
-  //   printf("\t [it]: %d ",counter);
-  //   swap(&arr->at(pos),&arr->at(fatherPos));
-  //   pos = fatherPos;
-  //   fatherPos = pos/2;
-  //   counter++;
-  // }
 }
 void BinaryHeap::pop(){
   if(this->empty()){
@@ -125,35 +104,7 @@ void BinaryHeap::printBinaryHeap(){
   std::cout  << '\n';
   printBinaryHeap("",1);
 }
-/*
-void IntervalTree::printIntevalTree(){
-  std::cout << "NODE"<<'\t'<<"key"<<'\t'<<"height"<<'\t'<<"node"<<'\t'<<"Dir Father" << '\n';
-  printIntevalTree(root,"");
-}
-*/
-/*
-void IntervalTree::printIntevalTree(Node* node,std::string Tab){
-    if(node == NULL){
-      std::cout<<Tab<< " - " << '\n';
-    }
-    else {
-      std::cout << Tab;
-      printNode(node);
-      printIntevalTree(node->left,Tab + '\t');
-      printIntevalTree(node->right,Tab + '\t');
 
-    }
-  }
-  void IntervalTree::printNode(Node *node){
-    if(node != NULL){
-      std::cout<<"Y: "<<'('<< node->intervalY.first <<","<<node->intervalY.second<<" X,("<<node->intervalX.first<<','<<node->intervalX.second<<"): "<< '\t';
-      std::cout << node->key <<'\t'<<node->height<<'\t';
-      std::cout << node << '\t';
-      if(node->father!=NULL)std::cout << node->father << '\n';
-      else std::cout << "NULL" << '\n';
-    } else std::cout << "NULL" << '\n';
-  }
-*/
 std::vector<int> BinaryHeap::getVector(){
   std::vector<int> vec = *arr;
   return vec;
@@ -165,15 +116,15 @@ void BinaryHeap::printArr(){
   printf("\n");
 }
 void BinaryHeap::unionBH(const std::vector<int>&vec){
-  std::cout << "UNION BH: FUNCTION" << '\n';
+  // std::cout << "UNION BH: FUNCTION" << '\n';
   for(int i = 1; i < vec.size(); ++i){
       arr->push_back(vec[i]);
   }
   
   int height = log2(this->size());
   int level = height + 1;
-  printf("\nTotal size: %d\n",arr->size());
-  printf("\nOriginal Heigh: %d \t Original level: %d\n",height,level);
+  // printf("\nTotal size: %d\n",arr->size());
+  // printf("\nOriginal Heigh: %d \t Original level: %d\n",height,level);
   while(height >= 0){
     int posNodes = pow(2,height);
     int limit = std::min((int)pow(2,height+1),this->size() + 1);
