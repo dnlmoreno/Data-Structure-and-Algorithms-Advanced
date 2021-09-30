@@ -35,18 +35,40 @@ void BinaryHeap::swap(int* son, int* father){
 	*father = *son;
 	*son = cage1;
 }
+void BinaryHeap::upheap(int* hijo, int* padre, int* i){
+	swap(hijo,padre);
+	*i = parent(*i);
+}
 
 void BinaryHeap::push(int n){
-  int pos = arr->size();
-  int fatherPos = pos/2;
+  // int pos = arr->size();
+  // int fatherPos = pos/2;
+  // int millon = 1000000;
+  // if(n%millon == 0){
+  //   printf("[n] %d \n",n);
+  //   printf("\t[pos]: %d \t[father pos]: %d \n",pos,arr->at(fatherPos));
+  // }
+  // arr->push_back(n);
+  //   printf("arr->at(pos): %d \n",arr->at(pos));   
+  //   printf("arr->at(father): %d \n",arr->at(fatherPos));   
+    
+  
+  int counter = 0;
+  int i = this->size();
+	arr->push_back(n);
+	i++;
+	while (i != 1 && arr->at(parent(i)) > arr->at(i)){
+    printf("uping \n");
+		upheap(&arr->at(i), &arr->at(parent(i)), &i);
+	}
 
-  arr->push_back(n);
-
-  while(pos!=1 && arr->at(fatherPos) > arr->at(pos)){
-    swap(&arr->at(pos),&arr->at(fatherPos));
-    pos = fatherPos;
-    fatherPos = pos/2;
-  }
+  // while(pos!=1 && arr->at(fatherPos) > arr->at(pos)){
+  //   printf("\t [it]: %d ",counter);
+  //   swap(&arr->at(pos),&arr->at(fatherPos));
+  //   pos = fatherPos;
+  //   fatherPos = pos/2;
+  //   counter++;
+  // }
 }
 void BinaryHeap::pop(){
   if(this->empty()){
@@ -64,10 +86,10 @@ void BinaryHeap::pop(){
 }
 void BinaryHeap::downheap(int root){
 	int posL = 2 * root;
-	int posR = posR + 1;
+	int posR = posL + 1;
 
   int posVar = root;
-
+  // printf("\t[root]: %d \t [posL]: %d \t[posR]: %d \n",root,posL,posR);
   if (posL <= arr->size()-1){
     int *Leftchild = &arr->at(posL);
     if(*Leftchild < arr->at(posVar))posVar = posL;
@@ -82,15 +104,15 @@ void BinaryHeap::downheap(int root){
   }
 }
 
-void BinaryHeap::printBinaryHeap(std::string tab,int pos){
+void BinaryHeap::printBinaryHeap(std::string string1,int pos){
   // " - " significa que no tiene child
   if(pos >= arr->size()){
-    std::cout<<tab << " - " << '\n';
+    std::cout<<string1 << " - " << '\n';
   } else {
-    std::cout << tab;
+    std::cout << string1;
     std::cout << arr->at(pos) << '\n';
-    printBinaryHeap(tab + '\t',pos * 2);
-    printBinaryHeap(tab + '\t',pos * 2 + 1);
+    printBinaryHeap(string1 + tab,pos * 2);
+    printBinaryHeap(string1 + tab,pos * 2 + 1);
   }
 }
 void BinaryHeap::printBinaryHeap(){
@@ -136,40 +158,40 @@ std::vector<int> BinaryHeap::getVector(){
   std::vector<int> vec = *arr;
   return vec;
 }
-
-BinaryHeap BinaryHeap::unionBH(const std::vector<int>&vec){
+void BinaryHeap::printArr(){
+  for(int i = 0; i < arr->size(); ++i){
+    std::cout << arr->at(i) << " ";
+  }
+  printf("\n");
+}
+void BinaryHeap::unionBH(const std::vector<int>&vec){
   std::cout << "UNION BH: FUNCTION" << '\n';
-  std::cout << "this->size1:  "<<this->size() << '\n';
   for(int i = 1; i < vec.size(); ++i){
       arr->push_back(vec[i]);
   }
-  for(int i = 0; i < arr->size(); ++i){
-    std::cout << arr->at(i) << ' ';
-  }
-  std::cout << "this->size1:  "<<this->size() << '\n';
-
+  
   int height = log2(this->size());
   int level = height + 1;
+  printf("\nTotal size: %d\n",arr->size());
+  printf("\nOriginal Heigh: %d \t Original level: %d\n",height,level);
   while(height >= 0){
-    std::cout << "me caigo 1" << '\n';
     int posNodes = pow(2,height);
     int limit = std::min((int)pow(2,height+1),this->size() + 1);
-
     while(posNodes != limit){
-      std::cout << "me caigo 2" << '\n';
-
+    // printf("[posnNodes]: %d \n",posNodes);
+    // printf("DownHeap function:\n ");
       downheap(posNodes);
-      std::cout << "me caigo 3" << '\n';
 
       posNodes++;
 
     }
-    std::cout << "me caigo 3" << '\n';
 
     height--;
   }
-  return *this;
+ 
+  // return *this;
 }
+
 bool BinaryHeap::isValid(){
   bool isvalid = true;
   for(int i = 1; i < arr->size(); ++i){
@@ -181,13 +203,11 @@ bool BinaryHeap::isValid(){
         break;
       }
     }
-    if(i*2 + 1 < arr->size()){
-      if(i*2 + 1 < arr->size()){
-        if(arr->at(i*2 + 1) < arr->size()){
+    if((i*2) + 1 < arr->size()){
+        if(arr->at(i*2 + 1) < arr->at(i)){
           isvalid = false;
           break;
         }
-      }
     }
   }
   return isvalid;

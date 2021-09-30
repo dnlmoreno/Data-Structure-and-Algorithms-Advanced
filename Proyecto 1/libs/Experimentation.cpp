@@ -5,21 +5,43 @@ Experimentation::Experimentation(/* args */){
 
 Experimentation::~Experimentation(){
 }
-void Experimentation::fill(int n){
-    
+// mejorar, se cae con dos números consecutivos :c 
+int Experimentation::getRand(int FROM,int TO){
+  int randPos = (rand()%(FROM - TO + 1)+FROM);
+  return randPos;
+}
+void Experimentation::fill(vi& vec,int n){
+    for(int i = 0; i < n; ++i){
+		vec.push_back(i);
+	}
 }
 
 void Experimentation::debugBinaryHeap(){
-	BinaryHeap* bh = new BinaryHeap();
+	vi vec;
+	int millon = 1000000;
+	fill(vec,69*millon);
+	BinaryHeap *binaryheap1 = new BinaryHeap();
+	for(int i = 0; i < vec.size();++i){
+		binaryheap1->push(vec[i]);
+	}
+	// binaryheap1->printBinaryHeap();
+	BinaryHeap *binaryheap2 = new BinaryHeap();
+	fill(vec,1*millon);
+	printf("me caigo \n");
+	for(int i = 0; i < vec.size(); ++i){
+		if(i%millon==0)printf("%d millones\n",i);
+		binaryheap2->push(vec[i]);
+	}
+	printf("original size bh2: %d\n",binaryheap2->size());
 
-	bh->push(1);
-	bh->push(3);
-	bh->push(5);
-	bh->push(6);
-	bh->push(1);
-	bh->printBinaryHeap();
-
-
+	vec = binaryheap1->getVector();
+	binaryheap2->unionBH(vec);
+	
+	printf("original size bh2: %d\n",binaryheap2->size());
+	// binaryheap1->printBinaryHeap();
+	// binaryheap2->printBinaryHeap();
+	if(binaryheap2->isValid())std::cout<<"valid binaryheap2\n";
+	if(binaryheap1->isValid())std::cout<<"valid binaryheap1\n";
 }
 
 void Experimentation::debugBinomialHeap(){

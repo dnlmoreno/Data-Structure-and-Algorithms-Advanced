@@ -7,8 +7,8 @@
 class Experimentation{
 
 private:
-    void fill(int);
-
+    void fill(vi&,int);
+    int getRand(int,int);
 public:
     Experimentation(/* args */);
     ~Experimentation();

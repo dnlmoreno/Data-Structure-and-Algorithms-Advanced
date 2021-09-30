@@ -4,6 +4,6 @@ using namespace std;
 
 int main(int argc, char* argv[]){
 	Experimentation* exp = new Experimentation();
-	exp->debugBinomialHeap();
+	exp->debugBinaryHeap();
 	return 0;
 }
