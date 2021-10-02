@@ -35,7 +35,6 @@ Nodo* BinomialHeap::getHeap(){
 }
 
 bool BinomialHeap::insert(int info){
-	cout<<"insert function"<<endl;
 	// Heap esta vacio
 	if(head == NULL){
 		cout << "entre head null";
@@ -44,13 +43,10 @@ bool BinomialHeap::insert(int info){
 	}
 
 	// Heap no esta vacio
-	cout << "hola"<<endl;
-	
 	Nodo* new_heap = NULL;
 	new_heap = new Nodo(info);
-	std::cout<<"me caigo en insert 2"<<'\t'<<endl;;
 	head = union_BH(head, new_heap);
-	//delete new_heap;
+	delete new_heap;
 	return true;
 }
 
@@ -80,8 +76,6 @@ Nodo* BinomialHeap::search_Min(){
 Nodo* BinomialHeap::union_BH(Nodo* head_BT1, Nodo* head_BT2){
 	// Comprueba si los heaps ingresados tienen elementos
 	if(head_BT1 == NULL && head_BT2 == NULL) return NULL;
-
-	std::cout<<"me caigo en union"<<endl;;
 
 	// Se conectan ambos heap en uno solo 
 	head = __merge(head_BT1, head_BT2);
@@ -124,7 +118,6 @@ Nodo* BinomialHeap::union_BH(Nodo* head_BT1, Nodo* head_BT2){
 
 
 Nodo* BinomialHeap::__merge(Nodo* head_BT1, Nodo* head_BT2){
-	std::cout<<"me caigo en merge"<<endl;
 	// Si un heap ingresado esta vacio devuelve el heap no vacio
 	if(head_BT1 == NULL) return head_BT2;
 	if(head_BT2 == NULL) return head_BT1;
@@ -166,7 +159,7 @@ void BinomialHeap::__link_BT(Nodo* head_BT1, Nodo* head_BT2){
     head_BT2->degree = head_BT2->degree + 1;
 }
 
-
+/******* Funciones que imprimen el Binomial heap *******/
 
 void BinomialHeap::Display(Nodo* H){
     if (H == NULL){
