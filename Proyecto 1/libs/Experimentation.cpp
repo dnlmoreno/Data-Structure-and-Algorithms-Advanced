@@ -59,39 +59,37 @@ void Experimentation::debugBinaryHeap(){
 
 void Experimentation::debugBinomialHeap(){
 
-  	cout << "Hola Mundo!" << endl;
-	BinomialHeap binomial_h;
-	BinomialHeap binomial_h2;
-	Nodo* H = NULL;
-	Nodo* H1 = NULL;
-	Nodo* H2 = NULL;
-	Nodo* W = NULL;
+	BinomialHeap* binomial_h = new BinomialHeap();
+	BinomialHeap* binomial_h2 = new BinomialHeap();
 
-	//cout << "El binomial esta en la posicion: " << binomial_h.getHeap() << endl;
-	//cout << "El binomial esta en la posicion: " << &binomial_h << endl;
-
-	binomial_h.insert(5);
-	binomial_h.insert(8);
-  /*	binomial_h.insert(10);
-	binomial_h.insert(15);
-	binomial_h.insert(16);
-	binomial_h.insert(17);
-	binomial_h.insert(19);
-
-
-	binomial_h2.insert(0);
-	binomial_h2.insert(1);
-	binomial_h2.insert(7);
-	binomial_h2.insert(26);
-	binomial_h2.insert(30); */
-
-	H1 = binomial_h.getHeap();
-	H2 = binomial_h2.getHeap();
+	vi vec; 
+	fillUnordered(vec,1,10);
+	for(int i = 0; i < vec.size(); ++i){
+		binomial_h->insert(vec[i]);
+	}
+	printf("BH1: \n");
+	binomial_h->PrintBinomialHeap();
+	fillUnordered(vec,1,10);
+	for(int i = 0; i < vec.size(); ++i){
+		binomial_h2->insert(vec[i]);
+	}
+	printf("BH2: \n");
+	binomial_h2->PrintBinomialHeap();
+	
+	
+	// binomial_h->union_BH(binomial_h,binomial_h2);
+	// printf("UNION BH1 Y BH2\n");
+	// binomial_h2->PrintBinomialHeap();
+	
+	Nodo* H1 = nullptr;
+	Nodo* H2 = nullptr;
+	H1 = binomial_h->getHeap();
+	H2 = binomial_h2->getHeap();
 
 
-	//H = binomial_h.union_BH(H1, H2);
+	H1 = binomial_h->union_BH(H1, H2);
 
-	//H = binomial_h.getHeap();
+	H1 = binomial_h->getHeap();
 
 	// binomial_h.Display(H);
 
@@ -99,10 +97,14 @@ void Experimentation::debugBinomialHeap(){
 
 	// cout << "Raiz minima: " << H->info << endl;
 	//cout << endl;
-	
-	// binomial_h.PrintBinomialHeap();
-
+	std::cout<<"\n\nunion"<<endl;
+	binomial_h2->PrintBinomialHeap();
+	if(binomial_h2->isValid())cout<<"valid"<<endl;
 	// cout << "\n#############################" << endl;
+
+	//H = binomial_h.getHeap();
+
+	// binomial_h.Display(H);
 
 }
 
@@ -110,7 +112,6 @@ void Experimentation::getInsertionTime(){
 	int rep = 10000;
 		// tamaño de elementos
 		for(int n = 10000; n <= 100000; n+=10000){
-
 			BinaryHeap* binaryheap1 = new BinaryHeap();
 			BinaryHeap* binaryheap2 = new BinaryHeap();
 			BinaryHeap* binaryheap3 = new BinaryHeap();

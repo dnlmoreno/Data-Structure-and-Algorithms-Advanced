@@ -24,6 +24,7 @@ Nodo::~Nodo(){
 
 BinomialHeap::BinomialHeap(){
 	head = NULL;
+	this->mysize = 0;
 }
 
 BinomialHeap::~BinomialHeap(){
@@ -35,22 +36,22 @@ Nodo* BinomialHeap::getHeap(){
 }
 
 bool BinomialHeap::insert(int info){
-	cout<<"insert function"<<endl;
+	// cout<<"insert function"<<endl;
 	// Heap esta vacio
 	if(head == NULL){
-		cout << "entre head null";
+		// cout << "entre head null";
 		head = new Nodo(info);
+		this->mysize++;
 		return true;
 	}
 
 	// Heap no esta vacio
-	cout << "hola"<<endl;
 	
 	Nodo* new_heap = NULL;
 	new_heap = new Nodo(info);
-	std::cout<<"me caigo en insert 2"<<'\t'<<endl;;
 	head = union_BH(head, new_heap);
 	//delete new_heap;
+	this->mysize++;
 	return true;
 }
 
@@ -76,12 +77,14 @@ Nodo* BinomialHeap::search_Min(){
 	return min_node;
 }
 
-
+int BinomialHeap::size(){
+	return this->mysize;
+}
 Nodo* BinomialHeap::union_BH(Nodo* head_BT1, Nodo* head_BT2){
 	// Comprueba si los heaps ingresados tienen elementos
 	if(head_BT1 == NULL && head_BT2 == NULL) return NULL;
 
-	std::cout<<"me caigo en union"<<endl;;
+	// std::cout<<"me caigo en union"<<endl;;
 
 	// Se conectan ambos heap en uno solo 
 	head = __merge(head_BT1, head_BT2);
@@ -119,12 +122,18 @@ Nodo* BinomialHeap::union_BH(Nodo* head_BT1, Nodo* head_BT2){
 		// Se avanza en la raiz de los BT's contenidos en el heap
 		next = x->sibling;
 	}
+	std::cout << "Ya está unido"<<endl;
+	std::cout << "printing"<<endl;
+	this->PrintBinomialHeap();
+	std::cout<< "saliendo de union"<<endl;
 	return head;
 }
-
+void BinomialHeap::union_BH(BinomialHeap* bh1,BinomialHeap* bh2){
+	Nodo* p = this->union_BH(bh1->getHeap(),bh2->getHeap());
+}
 
 Nodo* BinomialHeap::__merge(Nodo* head_BT1, Nodo* head_BT2){
-	std::cout<<"me caigo en merge"<<endl;
+	// std::cout<<"me caigo en merge"<<endl;
 	// Si un heap ingresado esta vacio devuelve el heap no vacio
 	if(head_BT1 == NULL) return head_BT2;
 	if(head_BT2 == NULL) return head_BT1;
@@ -166,26 +175,6 @@ void BinomialHeap::__link_BT(Nodo* head_BT1, Nodo* head_BT2){
     head_BT2->degree = head_BT2->degree + 1;
 }
 
-
-
-void BinomialHeap::Display(Nodo* H){
-    if (H == NULL){
-        cout<<"The Heap is empty"<<endl;
-        //return 0;
-    }
-
-    cout<<"The root nodes are: "<<endl;
-    Nodo* p;
-
-    p = H;
-    while (p != NULL){
-        cout<<p->info;
-        if (p->sibling != NULL)
-            cout<<"-->";
-        p = p->sibling;
-    }
-    cout<<endl;
-}
 void BinomialHeap::Display2(Nodo* H){
 	if(H == NULL){
 		cout<<"The heap is empty"<<endl;
@@ -218,4 +207,52 @@ void BinomialHeap::DisplayBhTree(Nodo* H,std::string tab){
 }
 void BinomialHeap::PrintBinomialHeap(){
 	Display2(this->head);
+}
+/*
+Condiciones de validez:
+	1. nodos visitados = arbol->size
+	2. cada arbol tiene que ser un heap
+*/
+bool BinomialHeap::validNode(Nodo *p){
+	if(p->padre->info > p->info)return false;	
+	return true;
+}
+void BinomialHeap::validTree(Nodo* p,bool& valid,int& numVisited){
+	if(p != nullptr && valid){
+		numVisited++;
+		// check if every node is valid
+		valid = validNode(p);
+		if(!valid)return;
+		validTree(p->child,valid,numVisited);
+		validTree(p->sibling,valid,numVisited);
+	}
+}
+bool BinomialHeap::isValid(){
+	if(this->head== nullptr && this->mysize == 0){
+		cout<<"The heap is empty"<<endl;
+		return true;
+	}
+	Nodo* p;
+	p = this->head;
+	int currentsize = 0;
+	std::string tab = "\t";
+	bool check = true;
+	// loop towards the binomial heap
+	while(p  != nullptr){
+		currentsize++;
+		// check if each bi-tree is valid
+		validTree(p->child,check,currentsize);
+		if(!check){
+			cout << "not valid tree exeption"<<endl;
+			return false;
+		}
+		p = p->sibling;
+	}
+	if(currentsize != this->size()){
+		std::cout << "not same size exeption"<<endl;
+		std::cout << "currentSize: "<<currentsize;
+		std::cout << " this->size "<<this->size() << "\n";
+		return false;
+	}
+	return true;
 }
