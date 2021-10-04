@@ -98,8 +98,8 @@ void Experimentation::debugBinomialHeap(){
 	// cout << "Raiz minima: " << H->info << endl;
 	//cout << endl;
 	std::cout<<"\n\nunion"<<endl;
-	binomial_h2->PrintBinomialHeap();
-	if(binomial_h2->isValid())cout<<"valid"<<endl;
+	binomial_h->PrintBinomialHeap();
+	if(binomial_h->isValid())cout<<"valid"<<endl;
 	// cout << "\n#############################" << endl;
 
 	//H = binomial_h.getHeap();

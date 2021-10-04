@@ -122,10 +122,10 @@ Nodo* BinomialHeap::union_BH(Nodo* head_BT1, Nodo* head_BT2){
 		// Se avanza en la raiz de los BT's contenidos en el heap
 		next = x->sibling;
 	}
-	std::cout << "Ya está unido"<<endl;
-	std::cout << "printing"<<endl;
-	this->PrintBinomialHeap();
-	std::cout<< "saliendo de union"<<endl;
+	// std::cout << "Ya está unido"<<endl;
+	// std::cout << "printing"<<endl;
+	// this->PrintBinomialHeap();
+	// std::cout<< "saliendo de union"<<endl;
 	return head;
 }
 void BinomialHeap::union_BH(BinomialHeap* bh1,BinomialHeap* bh2){
